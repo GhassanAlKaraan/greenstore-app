@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:messageme_app/constants.dart';
+import 'package:greenstore_app/constants.dart';
 
 class farmdetailsscreen extends StatefulWidget {
   static const String screenroutes = 'farmesDetailsScreen';

@@ -4,12 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-import 'package:messageme_app/screens/add_product.dart';
-import 'package:messageme_app/screens/homefarmer_screen.dart';
+import 'package:greenstore_app/screens/add_product.dart';
+import 'package:greenstore_app/screens/homefarmer_screen.dart';
 
-import 'package:messageme_app/screens/manage_profile_screen.dart';
+import 'package:greenstore_app/screens/manage_profile_screen.dart';
 
-import 'package:messageme_app/widgets/manageproductwidget.dart';
+import 'package:greenstore_app/widgets/manageproductwidget.dart';
 
 class ManageProductScreen extends StatefulWidget {
   static const String screenroutes = 'manage_product_screen';

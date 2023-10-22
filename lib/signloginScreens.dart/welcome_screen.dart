@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:messageme_app/signloginScreens.dart/registration_screen.dart';
-import 'package:messageme_app/signloginScreens.dart/registrationclient_scrreen.dart';
+import 'package:greenstore_app/signloginScreens.dart/registration_screen.dart';
+import 'package:greenstore_app/signloginScreens.dart/registrationclient_scrreen.dart';
 
-import 'package:messageme_app/signloginScreens.dart/signin_screen.dart';
+import 'package:greenstore_app/signloginScreens.dart/signin_screen.dart';
 import '../widgets/my_button.dart';
 
 class WelcomeScreen extends StatefulWidget {

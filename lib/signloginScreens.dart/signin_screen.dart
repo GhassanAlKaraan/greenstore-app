@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:messageme_app/signloginScreens.dart/resetpage.dart';
-import 'package:messageme_app/signloginScreens.dart/welcome_screen.dart';
+import 'package:greenstore_app/signloginScreens.dart/resetpage.dart';
+import 'package:greenstore_app/signloginScreens.dart/welcome_screen.dart';
 import '../constants.dart';
 import '../screens/homefarmer_screen.dart';
 import '../widgets/buildtextfiled.dart';

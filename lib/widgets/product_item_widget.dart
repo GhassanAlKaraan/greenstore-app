@@ -5,11 +5,11 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:messageme_app/screens/chario.dart';
-import 'package:messageme_app/screens/favorites.dart';
+import 'package:greenstore_app/screens/chario.dart';
+import 'package:greenstore_app/screens/favorites.dart';
 
-import 'package:messageme_app/screens/product.dart';
-import 'package:messageme_app/widgets/my_button.dart';
+import 'package:greenstore_app/screens/product.dart';
+import 'package:greenstore_app/widgets/my_button.dart';
 import 'package:provider/provider.dart';
 
 

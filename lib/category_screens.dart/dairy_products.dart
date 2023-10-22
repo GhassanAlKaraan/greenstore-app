@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:messageme_app/widgets/Allproductwidget.dart';
+import 'package:greenstore_app/widgets/Allproductwidget.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/product_item_widget.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:messageme_app/screens/chario.dart';
-import 'package:messageme_app/screens/favorites.dart';
+import 'package:greenstore_app/screens/chario.dart';
+import 'package:greenstore_app/screens/favorites.dart';
 
 import '../screens/homeclient_screen.dart';
 

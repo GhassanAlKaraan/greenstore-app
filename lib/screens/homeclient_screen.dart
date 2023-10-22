@@ -2,14 +2,14 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:messageme_app/category_screens.dart/animals.dart';
-import 'package:messageme_app/category_screens.dart/dairy_products.dart';
-import 'package:messageme_app/category_screens.dart/fruits.dart';
-import 'package:messageme_app/category_screens.dart/meat_products.dart';
-import 'package:messageme_app/category_screens.dart/seeds.dart';
-import 'package:messageme_app/category_screens.dart/vegetables.dart';
-import 'package:messageme_app/category_screens.dart/wood.dart';
-import 'package:messageme_app/constants.dart';
+import 'package:greenstore_app/category_screens.dart/animals.dart';
+import 'package:greenstore_app/category_screens.dart/dairy_products.dart';
+import 'package:greenstore_app/category_screens.dart/fruits.dart';
+import 'package:greenstore_app/category_screens.dart/meat_products.dart';
+import 'package:greenstore_app/category_screens.dart/seeds.dart';
+import 'package:greenstore_app/category_screens.dart/vegetables.dart';
+import 'package:greenstore_app/category_screens.dart/wood.dart';
+import 'package:greenstore_app/constants.dart';
 
 class Category {
   final String name;

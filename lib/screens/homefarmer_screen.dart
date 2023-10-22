@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:messageme_app/screens/farmes.dart';
-import 'package:messageme_app/screens/ordersscreen.dart';
+import 'package:greenstore_app/screens/farmes.dart';
+import 'package:greenstore_app/screens/ordersscreen.dart';
 import '../widgets/my_button.dart';
 import 'manage_product_screen.dart';
 import 'manage_profile_screen.dart';
