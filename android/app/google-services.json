@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "857726062203",
+    "project_id": "messageme-dc518",
+    "storage_bucket": "messageme-dc518.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857726062203:android:b62c05add21afcb4a21cde",
+        "android_client_info": {
+          "package_name": "com.layana.dar.messageme_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857726062203-cjkq60t6sgqmhdkqv2s3tbdruv8k4i8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALlwiHfhJxjlFuE04y0BaHuTssStYHVKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857726062203-cjkq60t6sgqmhdkqv2s3tbdruv8k4i8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
