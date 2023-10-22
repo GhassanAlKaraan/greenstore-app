@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:greenstore_app/screens/farmes.dart';
 import 'package:greenstore_app/screens/ordersscreen.dart';
@@ -8,6 +10,8 @@ import 'manage_profile_screen.dart';
 
 class HomefarmerScreen extends StatefulWidget {
   static const String screenroutes = 'homefarmer_screen';
+
+  const HomefarmerScreen({super.key});
 
   @override
   _HomefarmerScreenState createState() => _HomefarmerScreenState();
@@ -26,10 +30,10 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
               width: 45,
               height: 45,
             ),
-            Text('Farmer\'s Home'),
+            const Text('Farmer\'s Home'),
           ],
         ),
-        backgroundColor:Color.fromARGB(255, 248, 147, 180), 
+        backgroundColor:const Color.fromARGB(255, 248, 147, 180), 
       ),
       
       body: Padding(
@@ -42,7 +46,7 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 0),
-                child: Container(
+                child: SizedBox(
                   height: 180,
                   child: Image.asset('assets/tractorbiglogo.png'),
                 ),
@@ -50,9 +54,9 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
              
             ],
           ),
-          SizedBox(height: 45,),
+          const SizedBox(height: 45,),
           Mybutton(
-            color: Color.fromARGB(255, 126, 184, 250),  
+            color: const Color.fromARGB(255, 126, 184, 250),  
             title: 'Manage Profile',
             onPressed: (){
               Navigator.pushNamed(context, ManageProfileScreen.screenRoute);
@@ -61,7 +65,7 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
 
           ),
           Mybutton(
-            color: Color.fromARGB(255, 162, 255, 92),  
+            color: const Color.fromARGB(255, 162, 255, 92),  
             title: 'Manage Product',
             onPressed: (){
               Navigator.pushNamed(context, ManageProductScreen.screenroutes);
@@ -70,7 +74,7 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
 
           ),
           Mybutton(
-            color: Color.fromARGB(255, 252, 157, 220),  
+            color: const Color.fromARGB(255, 252, 157, 220),  
             title: 'View farmes',
             onPressed: (){
               Navigator.pushNamed(context,FarmersProfilesScreen.screenroutes);
@@ -79,7 +83,7 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
 
           ),
            Mybutton(
-            color: Color.fromARGB(255, 254, 245, 83),  
+            color: const Color.fromARGB(255, 254, 245, 83),  
             title: 'View orders',
             onPressed: (){
               Navigator.pushNamed(context,OrdersScreen.screenroutes);

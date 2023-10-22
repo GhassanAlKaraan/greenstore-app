@@ -26,18 +26,15 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:provider/provider.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await  Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProductList()),
- 
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -51,41 +48,43 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MessageMe app',
       theme: ThemeData(
-        primarySwatch: Colors.blue, 
+        primarySwatch: Colors.blue,
       ),
       //home:FarmersProfilesScreen(),
       // home:HomefarmerScreen(),
       //home: Allproductscreen(),
       //home: Favorites(),
-       // home: SignInScreen.screenRoute,
-       initialRoute: WelcomeScreen.screenroutes,
+      // home: SignInScreen.screenRoute,
+      initialRoute: WelcomeScreen.screenroutes,
       //home:RegistratioScreen(),
-      routes:{
-        WelcomeScreen.screenroutes: (context)=>WelcomeScreen(),
-        SignInScreen.screenRoute: (context)=>SignInScreen(),
-        RegistrationScreen.screenroutes: (context)=>RegistrationScreen(),
-        RegistrationclientScreen.screenroutes: (context)=>RegistrationclientScreen(),
-        HomeclientScreen.screenroutes: (context)=>HomeclientScreen(),
-        HomefarmerScreen.screenroutes: (context) => HomefarmerScreen(),
-        ManageProductScreen.screenroutes: (context) => ManageProductScreen(),
-        ManageProfileScreen.screenRoute: (context) => ManageProfileScreen(),
-        OrdersScreen.screenroutes: (context) => OrdersScreen(),
-        AddProductScreen.screenroutes: (context) => AddProductScreen(),
-        animalsScreen.screenroutes: (context) => animalsScreen(),
-        dairyScreen.screenroutes: (context) => dairyScreen(),
-        fruitsScreen.screenroutes: (context) => fruitsScreen(),
-        meatScreen.screenroutes: (context) => meatScreen(),
-        seedsScreen.screenroutes: (context) => seedsScreen(),
-        vegetablesScreen.screenroutes: (context) => vegetablesScreen(),
-        woodScreen.screenroutes: (context) => woodScreen(),
-        Favorites.screenroutes: (context) => Favorites(),
-        Chario.screenroutes: (context) => Chario(),
-        FarmersProfilesScreen.screenroutes: (context) => FarmersProfilesScreen(),
-        farmdetailsscreen.screenroutes: (context) => farmdetailsscreen(),
-
-       
-       } ,
+      routes: {
+        WelcomeScreen.screenroutes: (context) => const WelcomeScreen(),
+        SignInScreen.screenRoute: (context) => const SignInScreen(),
+        RegistrationScreen.screenroutes: (context) =>
+            const RegistrationScreen(),
+        RegistrationclientScreen.screenroutes: (context) =>
+            const RegistrationclientScreen(),
+        HomeclientScreen.screenroutes: (context) => const HomeclientScreen(),
+        HomefarmerScreen.screenroutes: (context) => const HomefarmerScreen(),
+        ManageProductScreen.screenroutes: (context) =>
+            const ManageProductScreen(),
+        ManageProfileScreen.screenRoute: (context) =>
+            const ManageProfileScreen(),
+        OrdersScreen.screenroutes: (context) => const OrdersScreen(),
+        AddProductScreen.screenroutes: (context) => const AddProductScreen(),
+        AnimalsScreen.screenroutes: (context) => const AnimalsScreen(),
+        DairyScreen.screenroutes: (context) => const DairyScreen(),
+        FruitsScreen.screenroutes: (context) => const FruitsScreen(),
+        meatScreen.screenroutes: (context) => const meatScreen(),
+        seedsScreen.screenroutes: (context) => const seedsScreen(),
+        vegetablesScreen.screenroutes: (context) => const vegetablesScreen(),
+        woodScreen.screenroutes: (context) => const woodScreen(),
+        Favorites.screenroutes: (context) => const Favorites(),
+        Chario.screenroutes: (context) => const Chario(),
+        FarmersProfilesScreen.screenroutes: (context) =>
+            const FarmersProfilesScreen(),
+        FarmDetailsScreen.screenroutes: (context) => const FarmDetailsScreen(),
+      },
     );
   }
 }
-

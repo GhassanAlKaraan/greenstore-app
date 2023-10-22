@@ -1,4 +1,3 @@
-
 // import 'dart:io';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +27,7 @@
 //   final TextEditingController _email = TextEditingController();
 //   final TextEditingController _location = TextEditingController();
 //   File? _image;
- 
+
 //    String userId = "";
 
 //   @override
@@ -145,7 +144,7 @@
 //                       'location': _location.text,
 //                       'phone': _phone.text,
 //                       'profileImageUrl': imageUrl,
-//                        'userID': userId, 
+//                        'userID': userId,
 //                     });
 
 //                     showDialog(
@@ -204,19 +203,7 @@
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -225,9 +212,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:greenstore_app/constants.dart';
-import 'package:greenstore_app/screens/product.dart';
 import 'package:path/path.dart' as p;
-import 'package:provider/provider.dart';
 
 class ManageProfileScreen extends StatefulWidget {
   static const String screenRoute = 'manage_profile_screen';
@@ -259,7 +244,9 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     User? user = FirebaseAuth.instance.currentUser;
     String? userId = user?.uid;
 
-    final farmRef = FirebaseFirestore.instance.collection('farms').where('userId', isEqualTo: userId);
+    final farmRef = FirebaseFirestore.instance
+        .collection('farms')
+        .where('userId', isEqualTo: userId);
     final farmSnapshot = await farmRef.get();
 
     if (farmSnapshot.docs.isNotEmpty) {
@@ -284,8 +271,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Add your Farm'),
+            const SizedBox(width: 5),
+            const Text('Add your Farm'),
           ],
         ),
         actions: [
@@ -293,7 +280,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               color: Colors.white,
             ),
@@ -302,22 +289,22 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
       ),
       body: ListView(
         children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           CircleAvatar(
             radius: 60,
             backgroundImage: _image == null
-                ? AssetImage('assets/noooprofile.jpg') as ImageProvider
+                ? const AssetImage('assets/noooprofile.jpg') as ImageProvider
                 : FileImage(_image!),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 190),
             child: GestureDetector(
-              child: Icon(Icons.camera_alt),
               onTap: pickImage,
+              child: const Icon(Icons.camera_alt),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           _buildTextField(
             'Enter the Name Of your Farm',
             Icons.holiday_village_sharp,
@@ -348,12 +335,12 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             Icons.location_on,
             _location,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.green, // قم بتغييرها للون الزر المفضل لديك
+                backgroundColor: Colors.green, // قم بتغييرها للون الزر المفضل لديك
               ),
               onPressed: () async {
                 if (_image != null &&
@@ -375,6 +362,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
                     // أضف البيانات إلى Firestore
                     User? user = FirebaseAuth.instance.currentUser;
+                    //! to check
                     String? userId = user?.uid;
 
                     await _firestore.collection('farmersprofile').add({
@@ -388,17 +376,19 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                       'farmID': farmID,
                     });
 
-                    
-
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Success'),
-                          content: Text('Your farm has been successfully established.'),
+                          title: const Text('Success'),
+                          content: const Text(
+                              'Your farm has been successfully established.'),
                           actions: <Widget>[
                             TextButton(
-                              child: Text('OK', selectionColor: Kpinkcolor,),
+                              child: const Text(
+                                'OK',
+                                selectionColor: Kpinkcolor,
+                              ),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -413,7 +403,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                   }
                 }
               },
-              child: Text('Done'),
+              child: const Text('Done'),
             ),
           ),
         ],
@@ -421,7 +411,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     );
   }
 
-  Widget _buildTextField(String label, IconData icon, TextEditingController controller) {
+  Widget _buildTextField(
+      String label, IconData icon, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextField(

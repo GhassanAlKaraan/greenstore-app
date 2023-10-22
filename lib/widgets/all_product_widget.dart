@@ -8,7 +8,7 @@ class ProductItem2 extends StatelessWidget {
   final String productName;
   final int productPrice;
 
-  ProductItem2({
+  const ProductItem2({super.key, 
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
@@ -34,7 +34,7 @@ class ProductItem2 extends StatelessWidget {
             children: [
               Container(
                 color: Colors.black.withOpacity(0.7), // لون الشريط
-                padding: EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -42,7 +42,7 @@ class ProductItem2 extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8),
                       child: Text(
                         productName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                         ),
@@ -52,7 +52,7 @@ class ProductItem2 extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(
                         '\$$productPrice',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                         ),

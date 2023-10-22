@@ -28,7 +28,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 230),
-              child: Container(
+              child: SizedBox(
                 height: 150,
                 child: Stack(
                   alignment: Alignment.center,
@@ -38,11 +38,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.only(left: 10, right:10 ),
               child: Mybutton(
-                color: Color.fromARGB(255, 250, 116, 161),
+                color: const Color.fromARGB(255, 250, 116, 161),
                 title: 'Sign in',
                 onPressed: () {
                   Navigator.pushNamed(context, SignInScreen.screenRoute);
@@ -50,7 +50,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                  fontSize: 50,
               ),
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Padding(
               padding: const EdgeInsets.only(left: 10, right:10 ),
               child: Mybutton(
@@ -65,7 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
               ),
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             Visibility(
               visible: selectedRole != null,
               child: Row(
@@ -75,14 +75,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     onPressed: () {
                       Navigator.pushNamed(context, RegistrationScreen.screenroutes);
                     },
-                    child: Text('Farmer'),
+                    child: const Text('Farmer'),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, RegistrationclientScreen.screenroutes);
                     },
-                    child: Text('Client'),
+                    child: const Text('Client'),
                   ),
                 ],
               ),

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:greenstore_app/constants.dart';
 
-class farmdetailsscreen extends StatefulWidget {
+class FarmDetailsScreen extends StatefulWidget {
   static const String screenroutes = 'farmesDetailsScreen';
-  const farmdetailsscreen({super.key});
+  const FarmDetailsScreen({super.key});
 
   @override
-  State<farmdetailsscreen> createState() => _farmdetailsscreenState();
+  State<FarmDetailsScreen> createState() => _FarmDetailsScreenState();
 }
-class _farmdetailsscreenState extends State<farmdetailsscreen> {
+
+class _FarmDetailsScreenState extends State<FarmDetailsScreen> {
   String? email;
   String? farmDescription;
   String? farmName;
@@ -24,26 +25,31 @@ class _farmdetailsscreenState extends State<farmdetailsscreen> {
     // قم بجلب بيانات المزرعة من Firestore باستخدام معرف المزرعة
     // استخدم Future.delayed للتأكد من أن البيانات قد تم جلبها بنجاح قبل إعادة إنشاء واجهة المستخدم
     Future.delayed(Duration.zero, () {
-      final String farmId = "معرف المزرعة الذي تم النقر عليه في الصفحة السابقة";
+      const String farmId = "معرف المزرعة الذي تم النقر عليه في الصفحة السابقة";
       _loadFarmData(farmId);
     });
   }
 
   void _loadFarmData(String farmId) {
     // اجلب بيانات المزرعة من Firestore باستخدام farmId
-    FirebaseFirestore.instance.collection('farmersprofile').doc(farmId).get().then((DocumentSnapshot snapshot) {
-      final Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
-   if (data != null) {
-     email = data['email'] as String?;
-     farmDescription = data['farmedescription'] as String?;
-     farmName = data['farmename'] as String?;
-     firstLastName = data['firstlastname'] as String?;
-     location = data['location'] as String?;
-     phone = data['phone'] as String?;
-     profileImageUrl = data['profileImageUrl'] as String?;
-}
-
-    });}
+    FirebaseFirestore.instance
+        .collection('farmersprofile')
+        .doc(farmId)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      final Map<String, dynamic>? data =
+          snapshot.data() as Map<String, dynamic>?;
+      if (data != null) {
+        email = data['email'] as String?;
+        farmDescription = data['farmedescription'] as String?;
+        farmName = data['farmename'] as String?;
+        firstLastName = data['firstlastname'] as String?;
+        location = data['location'] as String?;
+        phone = data['phone'] as String?;
+        profileImageUrl = data['profileImageUrl'] as String?;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,26 +63,24 @@ class _farmdetailsscreenState extends State<farmdetailsscreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Farme Details'),
+            const SizedBox(width: 5),
+            const Text('Farme Details'),
           ],
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           // CircleAvatar(child: Image.network(profileImageUrl ?? '')),
-           
+            // CircleAvatar(child: Image.network(profileImageUrl ?? '')),
+
             Text('Email: $email'),
             Text('Farm Description: $farmDescription'),
             Text('Farm Name: $farmName'),
             Text('First & Last Name: $firstLastName'),
             Text('Location: $location'),
             Text('Phone: $phone'),
-           
-            
           ],
         ),
       ),

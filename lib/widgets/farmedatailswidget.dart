@@ -12,7 +12,7 @@ class ProfiledetailItem extends StatelessWidget {
   final String phone;
   final String location;
 
-  ProfiledetailItem({
+  const ProfiledetailItem({super.key, 
     required this.imageUrl,
     required this.farmName,
     required this.farmDescription,
@@ -34,29 +34,29 @@ class ProfiledetailItem extends StatelessWidget {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Farm Details'),
+            const SizedBox(width: 5),
+            const Text('Farm Details'),
           ],
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         children: [
           CircleAvatar(
             radius: 50,
             child: Image.network(imageUrl),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           buildInfoCard('Farm Name:', farmName),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           buildInfoCard('First & Last Name:', firstLastName),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           buildInfoCard('Email:', email),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           buildInfoCard('Phone Number:', phone),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           buildInfoCard('Location:', location),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           buildInfoCard('Description:', farmDescription),
         ],
       ),
@@ -69,24 +69,24 @@ class ProfiledetailItem extends StatelessWidget {
       child: Container(
         height: 80,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 165, 205, 251),
+          color: const Color.fromARGB(255, 165, 205, 251),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: const Color.fromARGB(255, 80, 94, 101),
+                color: Color.fromARGB(255, 80, 94, 101),
               ),
             ),
-            SizedBox(height: 7),
+            const SizedBox(height: 7),
             Text(
               value,
-              style: TextStyle(fontSize: 18, color: Colors.white),
+              style: const TextStyle(fontSize: 18, color: Colors.white),
             ),
           ],
         ),

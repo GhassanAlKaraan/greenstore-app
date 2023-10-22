@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, unnecessary_const
+
 import 'package:flutter/widgets.dart';
 
 const Kpinkcolor= Color.fromARGB(255, 250, 116, 161);

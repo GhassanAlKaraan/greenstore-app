@@ -1,11 +1,13 @@
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:greenstore_app/constants.dart';
 
-import 'package:greenstore_app/widgets/Allproductwidget.dart';
+import 'package:greenstore_app/widgets/all_product_widget.dart';
 import 'package:greenstore_app/widgets/product_item_widget.dart';
 
 import '../widgets/nav_bar.dart';
@@ -35,8 +37,8 @@ class _AllproductscreenState extends State<Allproductscreen> {
                 width: 50,
                 height: 50,
               ),
-              SizedBox(width: 5),
-              Text('Products Screen'),
+              const SizedBox(width: 5),
+              const Text('Products Screen'),
             ],
           ),
         ),
@@ -52,20 +54,20 @@ class _AllproductscreenState extends State<Allproductscreen> {
     }
 
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     }
 
     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-      return Center(
+      return const Center(
         child: Text('No products available.'),
       );
     }
 
     // إذا كانت هناك منتجات، سنقوم بعرضها.
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, // عرض حاويتين في كل سطر
       ),
       itemCount: snapshot.data!.docs.length,
@@ -107,7 +109,7 @@ class _AllproductscreenState extends State<Allproductscreen> {
     );
   },
 ),
- bottomNavigationBar: CustomBottomNavigationBar(),
+ bottomNavigationBar: const CustomBottomNavigationBar(),
       ),
     );
   }

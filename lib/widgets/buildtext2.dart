@@ -29,6 +29,7 @@ Widget buildtext2(String hintText, IconData? prefixIcon, Function(String?) onCli
         if (value!.isEmpty) {
           return _errormsg(hintText);
         }
+        return null;
       },
       onTap: () {
         onClick(text); // Call the onClick function with the current text
@@ -39,16 +40,16 @@ Widget buildtext2(String hintText, IconData? prefixIcon, Function(String?) onCli
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon),
         hintText: hintText,
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 20,
         ),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
         ),
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Kpinkcolor,
             width: 1,
@@ -57,16 +58,16 @@ Widget buildtext2(String hintText, IconData? prefixIcon, Function(String?) onCli
             Radius.circular(10),
           ),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 230, 0),
+            color: Color.fromARGB(255, 255, 230, 0),
             width: 3,
           ),
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Color.fromARGB(255, 255, 0, 0),
             width: 3,

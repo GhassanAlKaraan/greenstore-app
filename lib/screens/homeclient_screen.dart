@@ -1,4 +1,4 @@
-
+// ignore_for_file: library_private_types_in_public_api
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,61 +18,64 @@ class Category {
   final String description;
   final String screenRoute; // Add this property
 
-  const Category(this.name, this.color, this.imageAsset, this.description, this.screenRoute);
+  const Category(this.name, this.color, this.imageAsset, this.description,
+      this.screenRoute);
 }
+
 class HomeclientScreen extends StatefulWidget {
   static const String screenroutes = 'homeclient_screen';
+
+  const HomeclientScreen({super.key});
 
   @override
   _HomeclientScreenState createState() => _HomeclientScreenState();
 }
 
 class _HomeclientScreenState extends State<HomeclientScreen> {
-
   final List<Category> categories = [
-    Category(
-      'Vegetable', 
+    const Category(
+      'Vegetable',
       Color.fromARGB(255, 136, 252, 140),
       'assets/khas.png',
       'Fresh and healthy  vegetables for your kitchen!',
       vegetablesScreen.screenroutes,
     ),
-    Category(
+    const Category(
       'Fruits',
       Color.fromARGB(255, 249, 124, 157),
       'assets/frez.png',
       'Juicy and delicious fruits for your taste buds!',
-      fruitsScreen.screenroutes,
+      FruitsScreen.screenroutes,
     ),
-    Category(
-      'Animals',  
+    const Category(
+      'Animals',
       Color.fromARGB(255, 255, 240, 108),
       'assets/3anzati.png',
       'Cute and lovely animals for your farm!',
-      animalsScreen.screenroutes,
+      AnimalsScreen.screenroutes,
     ),
-    Category(
-      ' Wood', 
+    const Category(
+      ' Wood',
       Color.fromARGB(255, 245, 134, 94),
       'assets/wood.png',
       'High-quality wood for your garden!',
       woodScreen.screenroutes,
     ),
-    Category(
+    const Category(
       'Dairy Products',
       Color.fromARGB(255, 131, 188, 235),
       'assets/laitier.png',
       'Fresh and creamy dairy products for your kitchen!',
-      dairyScreen.screenroutes,
+      DairyScreen.screenroutes,
     ),
-    Category(
+    const Category(
       'Meat Products',
       Color.fromARGB(255, 255, 163, 107),
       'assets/meats.png',
       'High-quality meat products for your meals!',
       meatScreen.screenroutes,
     ),
-    Category(
+    const Category(
       'Seeds',
       Color.fromARGB(255, 255, 214, 123),
       'assets/buzur.png',
@@ -84,7 +87,7 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(  
+      appBar: AppBar(
         backgroundColor: Kpinkcolor,
         title: Row(
           children: [
@@ -93,8 +96,8 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('GreenStore'),
+            const SizedBox(width: 5),
+            const Text('GreenStore'),
           ],
         ),
         actions: [
@@ -103,7 +106,7 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
               FirebaseAuth.instance.signOut();
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               color: Colors.white,
             ),
@@ -115,13 +118,13 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
         child: ListView(
           children: List.generate(categories.length, (index) {
             return GestureDetector(
-                    onTap: () {
-                     Navigator.pushNamed(
-                      context,
-                      categories[index].screenRoute, // Use the screenRoute property
-                     );
-                 },
-               child: Padding(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  categories[index].screenRoute, // Use the screenRoute property
+                );
+              },
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   height: 165,
@@ -133,7 +136,7 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
                     children: [
                       Positioned(
                         top: 2,
-                        left:5,
+                        left: 5,
                         child: Image.asset(
                           categories[index].imageAsset,
                           width: 80,
@@ -146,7 +149,10 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
                         right: 30,
                         child: Text(
                           categories[index].name,
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
                       ),
                       Positioned(
@@ -154,7 +160,8 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
                         right: 15,
                         child: Text(
                           categories[index].description,
-                          style: TextStyle(fontSize: 14, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.white),
                         ),
                       ),
                     ],
@@ -165,7 +172,6 @@ class _HomeclientScreenState extends State<HomeclientScreen> {
           }),
         ),
       ),
-    ); 
+    );
   }
 }
-

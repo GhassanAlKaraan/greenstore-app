@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,7 +38,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     if (password.length < 6) {
       print('Password should be at least 6 characters long');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Password should be at least 6 characters long'),
       ));
       return; // Stop further execution
@@ -62,7 +64,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         
 
         // Show a success message to the user
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Signup Successful'),
         ));
 
@@ -73,7 +75,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
     } else {
       print('Passwords do not match');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Passwords do not match'),
       ));
     }
@@ -91,8 +93,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Registration Farmer screen'),
+            const SizedBox(width: 5),
+            const Text('Registration Farmer screen'),
           ],
         ),
       ),
@@ -102,12 +104,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            SizedBox(height: 150),
-            Container(
+            const SizedBox(height: 150),
+            SizedBox(
               height: 100,
               child: Image.asset('assets/tractorbig2logo.png'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildTextField(
               'Enter the Name Of your Farme',
               Icons.holiday_village_sharp,
@@ -140,7 +142,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               },
             ),
            
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Mybutton(
@@ -152,7 +154,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       _password.text.isNotEmpty) {
                     _signup();
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Please complete all the fields and select an image.'),
                     ));
                   }
@@ -164,12 +166,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: Row(
                 children: [
-                  Text('Have you an account?'),
+                  const Text('Have you an account?'),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, SignInScreen.screenRoute);
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign in',
                       style: TextStyle(
                         color: Kgreencolor,

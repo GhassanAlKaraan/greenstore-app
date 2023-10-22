@@ -1,26 +1,27 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
-import '../widgets/Allproductwidget.dart';
+import '../widgets/all_product_widget.dart';
 import '../widgets/nav_bar.dart';
 
 import '../widgets/product_item_widget.dart';
 
-class animalsScreen extends StatefulWidget {
+class AnimalsScreen extends StatefulWidget {
   static const String screenroutes = 'animalsScreen';
-  const animalsScreen({super.key});
+  const AnimalsScreen({super.key});
 
   @override
-  State<animalsScreen> createState() => _animalsScreenScreenState();
+  State<AnimalsScreen> createState() => _AnimalsScreenScreenState();
 }
 
-class _animalsScreenScreenState extends State<animalsScreen> {
+class _AnimalsScreenScreenState extends State<AnimalsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 240, 108),
+        backgroundColor: const Color.fromARGB(255, 255, 240, 108),
         title: Row(
           children: [
             Image.asset(
@@ -28,15 +29,16 @@ class _animalsScreenScreenState extends State<animalsScreen> {
               width: 50,
               height: 50,
             ),
-            SizedBox(width: 5),
-            Text('Animals Product'),
+            const SizedBox(width: 5),
+            const Text('Animals Product'),
           ],
         ),
       ),
-       body: StreamBuilder<QuerySnapshot>(
+      body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('products')
-            .where('category', isEqualTo: 'animals') // قم بتصفية الوثائق بناءً على الفئة
+            .where('category',
+                isEqualTo: 'animals') // قم بتصفية الوثائق بناءً على الفئة
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -46,60 +48,63 @@ class _animalsScreenScreenState extends State<animalsScreen> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No animals products available.'),
             );
           }
 
           return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // عرض حاويتين في كل سطر
             ),
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-              var productData = snapshot.data!.docs[index].data() as Map<String, dynamic>;
+              var productData =
+                  snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
               // استخدم ProductItem لعرض المنتج
               String productName = productData['name'] ?? '';
               dynamic priceData = productData['price'];
-              int productPrice = priceData is int ? priceData : int.tryParse(priceData) ?? 0;
+              int productPrice =
+                  priceData is int ? priceData : int.tryParse(priceData) ?? 0;
               String productDescription = productData['description'] ?? '';
               String imageUrl = productData['image_url'] ?? '';
 
-               return GestureDetector(
-           onTap: () {
-           print('تم النقر على المنتج');
-           // Navigate to the product detail screen and pass product details as parameters.
-            Navigator.push(
-            context,
-           MaterialPageRoute(
-           builder: (context) =>ProductItem (
-          imageUrl: imageUrl,
-          productName: productName,
-          productDescription: productDescription,
-          productPrice: productPrice, productId: '',
-            ),
-           ),
-          );
-         },
-        child:ProductItem2(
-          imageUrl: imageUrl,
-          productName: productName,
-          //productDescription: productDescription,
-          productPrice: productPrice,
-            ),
-           );
+              return GestureDetector(
+                onTap: () {
+                  print('تم النقر على المنتج');
+                  // Navigate to the product detail screen and pass product details as parameters.
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductItem(
+                        imageUrl: imageUrl,
+                        productName: productName,
+                        productDescription: productDescription,
+                        productPrice: productPrice,
+                        productId: '',
+                      ),
+                    ),
+                  );
+                },
+                child: ProductItem2(
+                  imageUrl: imageUrl,
+                  productName: productName,
+                  //productDescription: productDescription,
+                  productPrice: productPrice,
+                ),
+              );
             },
-          );  
-        },    
+          );
+        },
       ),
-    bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

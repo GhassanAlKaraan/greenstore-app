@@ -1,8 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OrdersScreen extends StatefulWidget {
   static const String screenroutes = 'OrdersScreen';
+
+  const OrdersScreen({super.key});
 
   @override
   _OrdersScreenState createState() => _OrdersScreenState();
@@ -15,7 +19,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 244, 149, 181),
+        backgroundColor: const Color.fromARGB(255, 244, 149, 181),
         title: Row(
           children: [
             Image.asset(
@@ -23,8 +27,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Place your Order'),
+            const SizedBox(width: 5),
+            const Text('Place your Order'),
           ],
         ),
       ),
@@ -32,11 +36,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
         future: ordersCollection.get(), // جلب جميع الطلبات من Firestore
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // إذا كانت البيانات قيد التحميل، يتم عرض مؤشر التحميل.
+            return const CircularProgressIndicator(); // إذا كانت البيانات قيد التحميل، يتم عرض مؤشر التحميل.
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}'); // إذا حدث خطأ، يتم عرض الخطأ.
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No orders available'), // إذا لم تكن هناك بيانات متاحة، يتم عرض رسالة بأنه لا توجد طلبات.
             );
           } else {
@@ -49,22 +53,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 final order = orders[index];
                 final data = order.data() as Map<String, dynamic>;
 
-                return Container(
-
-                  child: ListTile(
-                    title: Text('Order '),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Product Name: ${data['name']}'),
-                        //Text('Customer Name: ${data['firstName']} ${data['lastName']}'),
-                        Text('Customer Email: ${data['email']}'),
-                       // Text('Customer Phone: ${data['phone']}'),
-                        Text('Customer Location: ${data['location']}'),
-                      ],
-                    ),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.check, color: Colors.green,)),
+                return ListTile(
+                  title: const Text('Order '),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Product Name: ${data['name']}'),
+                      //Text('Customer Name: ${data['firstName']} ${data['lastName']}'),
+                      Text('Customer Email: ${data['email']}'),
+                     // Text('Customer Phone: ${data['phone']}'),
+                      Text('Customer Location: ${data['location']}'),
+                    ],
                   ),
+                  trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.check, color: Colors.green,)),
                 );
               },
             );

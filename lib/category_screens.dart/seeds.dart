@@ -1,6 +1,8 @@
+// ignore_for_file: camel_case_types, avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../widgets/Allproductwidget.dart';
+import '../widgets/all_product_widget.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/product_item_widget.dart';
 
@@ -17,7 +19,7 @@ class _seedsScreenState extends State<seedsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:Color.fromARGB(255, 255, 214, 123),
+        backgroundColor:const Color.fromARGB(255, 255, 214, 123),
         title: Row(
           children: [
             Image.asset(
@@ -25,8 +27,8 @@ class _seedsScreenState extends State<seedsScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Seeds Product'),
+            const SizedBox(width: 5),
+            const Text('Seeds Product'),
           ],
         ),
       ),
@@ -43,19 +45,19 @@ class _seedsScreenState extends State<seedsScreen> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No seeds products available.'),
             );
           }
 
           return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // عرض حاويتين في كل سطر
             ),
             itemCount: snapshot.data!.docs.length,
@@ -97,7 +99,7 @@ class _seedsScreenState extends State<seedsScreen> {
           );  
         },    
       ),
-    bottomNavigationBar: CustomBottomNavigationBar(),
+    bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

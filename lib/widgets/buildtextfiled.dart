@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Define the _errormsg function outside of buildTextField
@@ -27,22 +26,23 @@ Widget buildTextField(String hintText, IconData? prefixIcon, bool obscureText, F
         if (value!.isEmpty) {
           return _errormsg(hintText);
         }
+        return null;
       },
       obscureText: obscureText,
       onChanged: onChanged,
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon),
         hintText: hintText,
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 20,
         ),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
         ),
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Color.fromARGB(255, 248, 147, 180),
             width: 1,
@@ -51,16 +51,16 @@ Widget buildTextField(String hintText, IconData? prefixIcon, bool obscureText, F
             Radius.circular(10),
           ),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 230, 0),
+            color: Color.fromARGB(255, 255, 230, 0),
             width: 3,
           ),
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Color.fromARGB(255, 255, 0, 0),
             width: 3,

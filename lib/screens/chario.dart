@@ -171,9 +171,10 @@
 
 
 
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:greenstore_app/screens/product.dart';
 
@@ -191,6 +192,7 @@ class Chario extends StatefulWidget {
 class _CharioState extends State<Chario> {
   final user = FirebaseAuth.instance.currentUser;
   final cartCollection = FirebaseFirestore.instance.collection('cart');
+  // ignore: prefer_typing_uninitialized_variables
   late final userCartDocument;
 
   @override
@@ -212,8 +214,8 @@ class _CharioState extends State<Chario> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Your Cart'),
+            const SizedBox(width: 5),
+            const Text('Your Cart'),
           ],
         ),
       ),
@@ -221,11 +223,11 @@ class _CharioState extends State<Chario> {
         future: userCartDocument.collection('items').get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No items in the cart'),
             );
           } else {
@@ -233,25 +235,25 @@ class _CharioState extends State<Chario> {
               future: getProductsForUserCart(snapshot.data!.docs),
               builder: (context, productSnapshot) {
                 if (productSnapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else if (productSnapshot.hasError) {
                   return Text('Error: ${productSnapshot.error}');
                 } else if (productSnapshot.data == null || productSnapshot.data!.isEmpty) {
-                  return Center(
+                  return const Center(
                     child: Text('No items in the cart'),
                   );
                 } else {
                   final products = productSnapshot.data!;
 
                   return Container(
-                    color: Color.fromARGB(255, 250, 225, 233),
+                    color: const Color.fromARGB(255, 250, 225, 233),
                     child: ListView.builder(
                       itemCount: products.length,
                       itemBuilder: (context, index) {
                         final product = products[index];
                         return ListTile(
                           leading: IconButton(
-                            icon: Icon(Icons.shopping_bag_outlined),
+                            icon: const Icon(Icons.shopping_bag_outlined),
                             onPressed: () {
                               _placeOrder(product);
                             },
@@ -259,7 +261,7 @@ class _CharioState extends State<Chario> {
                           title: Text(product.name),
                           subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
                           trailing: IconButton(
-                            icon: Icon(Icons.delete),
+                            icon: const Icon(Icons.delete),
                             onPressed: () {
                               _removeProduct(product.id);
                             },
@@ -274,7 +276,7 @@ class _CharioState extends State<Chario> {
           }
         },
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 

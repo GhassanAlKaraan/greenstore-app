@@ -18,6 +18,7 @@ class _FavoritesState extends State<Favorites> {
   final ProductList productProviderfav = ProductList();
   final user = FirebaseAuth.instance.currentUser;
   final favCollection = FirebaseFirestore.instance.collection('favorite');
+  // ignore: prefer_typing_uninitialized_variables
   late final userfavDocument;
   
 
@@ -35,9 +36,9 @@ class _FavoritesState extends State<Favorites> {
         backgroundColor: Colors.red,
         title: Row(
           children: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.favorite, size: 40,)),
-            SizedBox(width: 5),
-            Text('Your favorite screen'),
+            IconButton(onPressed: (){}, icon: const Icon(Icons.favorite, size: 40,)),
+            const SizedBox(width: 5),
+            const Text('Your favorite screen'),
           ],
         ),
       ),
@@ -46,11 +47,11 @@ class _FavoritesState extends State<Favorites> {
         future: userfavDocument.collection('itemsfav').get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No items in the favorite screen'),
             );
           } else {
@@ -79,13 +80,13 @@ class _FavoritesState extends State<Favorites> {
 
 
             return Container(
-              color: Color.fromARGB(255, 250, 225, 233),
+              color: const Color.fromARGB(255, 250, 225, 233),
               child: ListView.builder(
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   final product = products[index];
                   return ListTile(
-                    leading: IconButton(icon: Icon(Icons.add_shopping_cart),
+                    leading: IconButton(icon: const Icon(Icons.add_shopping_cart),
                            onPressed: () {
                         productProviderfav.addToCart(product, 1); // إضافة المنتج إلى سلة التسوق
             
@@ -106,14 +107,14 @@ class _FavoritesState extends State<Favorites> {
                   context: context,
                   builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text('Added to Cart'),
+                    title: const Text('Added to Cart'),
                     content: Text('${product.name} has been added to your cart.'),
                     actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK', style: TextStyle(color: Kpinkcolor)),
+                child: const Text('OK', style: TextStyle(color: Kpinkcolor)),
                        ),
                       ],
                      );
@@ -124,7 +125,7 @@ class _FavoritesState extends State<Favorites> {
                     title: Text(product.name),
                     subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       onPressed: () {
                          _removeProduct(product.id); 
                       },
@@ -136,7 +137,7 @@ class _FavoritesState extends State<Favorites> {
           }
         },
       ),
-       bottomNavigationBar: CustomBottomNavigationBar(),
+       bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
   void _removeProduct(String productId) {

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print, library_private_types_in_public_api
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:greenstore_app/signloginScreens.dart/resetpage.dart';
@@ -9,6 +11,8 @@ import '../widgets/my_button.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String screenRoute = 'signin_screen';
+
+  const SignInScreen({super.key});
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
@@ -70,7 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
   
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+    final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Kpinkcolor,
@@ -81,21 +85,22 @@ class _SignInScreenState extends State<SignInScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Sign in screen'),
+            const SizedBox(width: 5),
+            const Text('Sign in screen'),
           ],
         ),
       ),
       backgroundColor: Colors.white,
       body: Form(
-        key: _globalKey,
+        key: globalKey,
         child: ListView(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
-              child: Image.asset('assets/tractorbiglogo.png'),
               height: 190,
+              child: Image.asset('assets/tractorbiglogo.png'),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             buildTextField('Enter your email', Icons.email, false, (value) {
               return emailController.text = value;
             }),
@@ -116,11 +121,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   style: TextStyle(color: Colors.blue),
                 ),
               ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Mybutton(
-                color: Color.fromARGB(255, 250, 116, 161),
+                color: const Color.fromARGB(255, 250, 116, 161),
                 title: 'Sign in',
                 onPressed: () async {
                   User? user = await loginUsingEmailPassword(
@@ -132,7 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   if (user != null) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomefarmerScreen()),
+                      MaterialPageRoute(builder: (context) => const HomefarmerScreen()),
                     );
                   }
                 },
@@ -143,12 +148,12 @@ class _SignInScreenState extends State<SignInScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 80),
               child: Row(
                 children: [
-                  Text('Do not have an account?'),
+                  const Text('Do not have an account?'),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, WelcomeScreen.screenroutes);
                     },
-                    child: Text(
+                    child: const Text(
                       'Register',
                       style: TextStyle(
                         color: Kpinkcolor,

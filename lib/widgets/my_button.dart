@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Mybutton extends StatelessWidget {
@@ -6,7 +5,7 @@ class Mybutton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const Mybutton({
+  const Mybutton({super.key, 
     required this.color,
     required this.title,
     required this.onPressed, required int fontSize,
@@ -24,7 +23,7 @@ class Mybutton extends StatelessWidget {
           onPressed:  onPressed,
           minWidth: 140,
           height: 42,
-          child: Text(title, style: TextStyle(color: Colors.white),),
+          child: Text(title, style: const TextStyle(color: Colors.white),),
           ),
       ),
     );

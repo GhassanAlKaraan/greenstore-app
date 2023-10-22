@@ -1,12 +1,12 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:greenstore_app/constants.dart';
-import 'package:greenstore_app/screens/product.dart';
 import 'package:greenstore_app/widgets/buildtextfiled.dart';
-import 'package:provider/provider.dart';
 import 'dart:io';
 import '../widgets/addimagebutton.dart';
 import '../widgets/my_button.dart';
@@ -16,7 +16,7 @@ import 'manage_product_screen.dart';
 class AddProductScreen extends StatefulWidget {
   static const String screenroutes = 'addproduct';
 
-  const AddProductScreen({Key? key});
+  const AddProductScreen({super.key});
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -24,38 +24,35 @@ class AddProductScreen extends StatefulWidget {
 
 class _AddProductScreenState extends State<AddProductScreen> {
   String? farmId;
+  //! to check
   final _firestore = FirebaseFirestore.instance;
-  
-  late  final TextEditingController _productName = TextEditingController();
-  late final TextEditingController _productPrice = TextEditingController();
-  late final TextEditingController _productDescription = TextEditingController();
- 
-  String productId = UniqueKey().toString();
 
+  late final TextEditingController _productName = TextEditingController();
+  late final TextEditingController _productPrice = TextEditingController();
+  late final TextEditingController _productDescription =
+      TextEditingController();
+
+  String productId = UniqueKey().toString();
 
   File? fileImage;
   String selectedCategory = '';
-  
-          
-  
-   
 
   _showOption(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Make a choice'),
+        title: const Text('Make a choice'),
         content: SingleChildScrollView(
           child: Column(
             children: [
               ListTile(
-                leading: Icon(Icons.image),
-                title: Text('Gallery'),
+                leading: const Icon(Icons.image),
+                title: const Text('Gallery'),
                 onTap: () => _imagefromGallery(context),
               ),
               ListTile(
-                leading: Icon(Icons.camera_enhance),
-                title: Text('camera'),
+                leading: const Icon(Icons.camera_enhance),
+                title: const Text('camera'),
                 onTap: () => _imagefromcamera(context),
               ),
             ],
@@ -93,17 +90,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
     setState(() {
       selectedCategory = category;
     });
-    
-
   }
-
-    
 
   @override
   Widget build(BuildContext context) {
-  
-   
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Kgreencolor,
@@ -114,19 +104,17 @@ class _AddProductScreenState extends State<AddProductScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Add your product'),
+            const SizedBox(width: 5),
+            const Text('Add your product'),
           ],
         ),
       ),
-     
       body: ListView(
-        children: [  
-          SizedBox(height: 30),
-          addimagebutton(onPressed: () => _showOption(context)),
-           
-           buildTextField(
-            'Enter the Name Of your Product',  
+        children: [
+          const SizedBox(height: 30),
+          AddImageButton(onPressed: () => _showOption(context)),
+          buildTextField(
+            'Enter the Name Of your Product',
             Icons.title_rounded,
             false,
             (value) {
@@ -135,13 +123,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
               });
             },
           ),
-          buildTextField('Enter the price of this unit', Icons.euro_outlined,false,
+          buildTextField(
+              'Enter the price of this unit', Icons.euro_outlined, false,
               (value) {
             setState(() {
               _productPrice.text = value;
             });
           }),
-          buildTextField('Enter a Description of this product', Icons.description,false,
+          buildTextField(
+              'Enter a Description of this product', Icons.description, false,
               (value) {
             setState(() {
               _productDescription.text = value;
@@ -151,20 +141,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
-                color:Colors.white,
+                color: Colors.white,
                 border: Border.all(
                   width: 1.2,
                   color: Kpinkcolor,
                 ),
                 borderRadius: BorderRadius.circular(10.0),
-                
               ),
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Icon(
                         Icons.category_outlined,
@@ -182,98 +171,91 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Mybutton(
-                        color: Color.fromARGB(255, 136, 252, 140),
+                        color: const Color.fromARGB(255, 136, 252, 140),
                         title: 'vegetables',
                         onPressed: () {
                           selectCategory('vegetables'); // تحديث الفئة المحددة
                         },
-                 fontSize: 20,
-
+                        fontSize: 20,
                       ),
                       Mybutton(
-                        color: Color.fromARGB(255, 249, 124, 157),
+                        color: const Color.fromARGB(255, 249, 124, 157),
                         title: 'Fruits',
                         onPressed: () {
                           selectCategory('Fruits'); // تحديث الفئة المحددة
                         },
-                 fontSize: 20,
-
+                        fontSize: 20,
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Mybutton(
-                        color: Color.fromARGB(255, 255, 240, 108),
+                        color: const Color.fromARGB(255, 255, 240, 108),
                         title: 'animals',
                         onPressed: () {
                           selectCategory('animals'); // تحديث الفئة المحددة
                         },
-                 fontSize: 20,
-
+                        fontSize: 20,
                       ),
                       Mybutton(
-                        color: Color.fromARGB(255, 255, 214, 123),
+                        color: const Color.fromARGB(255, 255, 214, 123),
                         title: 'seeds ',
                         onPressed: () {
                           selectCategory('seeds'); // تحديث الفئة المحددة
                         },
-                 fontSize: 20,
-
+                        fontSize: 20,
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Mybutton(
-                        color: Color.fromARGB(255, 131, 188, 235),
+                        color: const Color.fromARGB(255, 131, 188, 235),
                         title: 'Dairy Products',
                         onPressed: () {
-                          selectCategory('Dairy Products'); // تحديث الفئة المحددة
+                          selectCategory(
+                              'Dairy Products'); // تحديث الفئة المحددة
                         },
-                 fontSize: 20,
-
+                        fontSize: 20,
                       ),
                       Mybutton(
-                        color: Color.fromARGB(255, 245, 134, 94),
+                        color: const Color.fromARGB(255, 245, 134, 94),
                         title: 'wood',
                         onPressed: () {
                           selectCategory('wood'); // تحديث الفئة المحددة
                         },
-                 fontSize: 20,
-
+                        fontSize: 20,
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 1),
                         child: Mybutton(
-                          color: Color.fromARGB(255, 255, 163, 107),
+                          color: const Color.fromARGB(255, 255, 163, 107),
                           title: 'Meat Products',
                           onPressed: () {
-                            selectCategory('Meat Products'); // تحديث الفئة المحددة
+                            selectCategory(
+                                'Meat Products'); // تحديث الفئة المحددة
                           },
-                       fontSize: 20,
-
+                          fontSize: 20,
                         ),
                       ),
-                      
                     ],
                   ),
-         
                 ],
               ),
             ),
@@ -284,10 +266,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
               color: Kgreencolor,
               title: 'Add Product',
               onPressed: () async {
-              User? user = FirebaseAuth.instance.currentUser;
-              String? userId = user?.uid;
+                User? user = FirebaseAuth.instance.currentUser;
+                String? userId = user?.uid;
 
-               
                 // التحقق من أن قيمة الفئة محددة
                 if (selectedCategory.isNotEmpty) {
                   // رفع الصورة إلى Firebase Storage
@@ -304,8 +285,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         await uploadTask.whenComplete(() => null);
 
                     if (uploadTaskSnapshot.state == TaskState.success) {
-                      final imageUrl =
-                          await storageReference.getDownloadURL();
+                      final imageUrl = await storageReference.getDownloadURL();
 
                       // حفظ بيانات المنتج في Firestore بما في ذلك قيمة الفئة
                       CollectionReference collRef =
@@ -317,26 +297,30 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         'image_url': imageUrl,
                         'category': selectedCategory,
                         'farmuserId': userId,
-                        'product_id': productId,   
-                      });showDialog(
+                        'product_id': productId,
+                      });
+                      showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                           title: Text('Product '),
-                           content: Text(' Product added successfuly'),
-                           actions: <Widget>[
-                           TextButton(
-                           onPressed: () {
-                           Navigator.of(context).pop();
-                },
-                child: Text('ok', style: TextStyle(color: Kpinkcolor),),
-              ),
-            ],
-          );
-        },
-      );  
+                            title: const Text('Product '),
+                            content: const Text(' Product added successfuly'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text(
+                                  'ok',
+                                  style: TextStyle(color: Kpinkcolor),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     } else {
-                // معالجة فشل رفع الصورة إذا كان ذلك ضرورياً
+                      // معالجة فشل رفع الصورة إذا كان ذلك ضرورياً
                       print('Image upload failed');
                     }
                   } else {
@@ -347,14 +331,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   // معالجة حالة عدم تحديد الفئة
                   print('Category not selected');
                 }
-                
               },
-                 fontSize: 20,
-            ),    
+              fontSize: 20,
+            ),
           ),
         ],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -367,15 +349,16 @@ class _AddProductScreenState extends State<AddProductScreen> {
           ),
         ],
         currentIndex: 0,
-          selectedItemColor: Color.fromARGB(255, 132, 131, 131),
-        unselectedItemColor: Color.fromARGB(255, 132, 131, 131),
+        selectedItemColor: const Color.fromARGB(255, 132, 131, 131),
+        unselectedItemColor: const Color.fromARGB(255, 132, 131, 131),
         onTap: (int index) {
           if (index == 0) {
-            Navigator.of(context).pushReplacementNamed(ManageProductScreen.screenroutes);
+            Navigator.of(context)
+                .pushReplacementNamed(ManageProductScreen.screenroutes);
           } else if (index == 1) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => HomefarmerScreen(),
+                builder: (context) => const HomefarmerScreen(),
               ),
             );
           }
@@ -384,5 +367,3 @@ class _AddProductScreenState extends State<AddProductScreen> {
     );
   }
 }
-
-

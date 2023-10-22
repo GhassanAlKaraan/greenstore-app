@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,7 +43,7 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
 
     if (password.length < 6) {
       print('Password should be at least 6 characters long');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Password should be at least 6 characters long'),
       ));
       return; // Stop further execution
@@ -57,6 +59,8 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
           password: password,
         );
          _userID = userCredential.user!.uid; 
+
+        //! Update the user profile - to be checked
         userCredential.user!.updateProfile(displayName:location);
         //userCredential.user!.updateProfile(displayName:firstlastName);
         //userCredential.user!.updateProfile(displayName:phone);
@@ -71,7 +75,7 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
        });
 
       // Show a success message to the user
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Signup Successful'),
       ));
 
@@ -86,7 +90,7 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
   else {
       print('Passwords do not match');
       // Add code to show an error message to the user (e.g., a Snackbar)
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Passwords do not match'),
       ));
     }
@@ -105,8 +109,8 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Registration Client screen'), // تغيير عنوان الشاشة إلى "Registration Client screen"
+            const SizedBox(width: 5),
+            const Text('Registration Client screen'), // تغيير عنوان الشاشة إلى "Registration Client screen"
           ],
         ),
       ),
@@ -116,12 +120,12 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            SizedBox(height: 25),
-            Container(
+            const SizedBox(height: 25),
+            SizedBox(
               height: 100,
               child: Image.asset('assets/tractorbig2logo.png'),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             buildTextField(
               'Enter your first and last name',
               Icons.title_rounded,
@@ -172,7 +176,7 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
                 });
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Mybutton(
@@ -188,7 +192,7 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
                     
                     _signup();
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Please complete all the fields.'),
                     ));
                   }
@@ -200,12 +204,12 @@ class _RegistrationScreenState extends State<RegistrationclientScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: Row(
                 children: [
-                  Text('Have you an account?'),
+                  const Text('Have you an account?'),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, SignInScreen.screenRoute);
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign in',
                       style: TextStyle(
                         color: Kgreencolor,

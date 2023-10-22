@@ -1,4 +1,6 @@
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -9,7 +11,7 @@ class Producttomanage extends StatefulWidget {
   final int productPrice;
   final String description;
 
-  Producttomanage({
+  const Producttomanage({super.key, 
     required this.productId,
     required this.imageUrl,
     required this.productName,
@@ -40,16 +42,16 @@ class _ProducttomanageState extends State<Producttomanage> {
       padding: const EdgeInsets.only(top: 8, left: 5, right: 5),
       child: Container(
         height: 120,
-        color: Color.fromARGB(255, 201, 255, 203),
+        color: const Color.fromARGB(255, 201, 255, 203),
         child: Row(
           children: [
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(widget.imageUrl),
             ),
-            SizedBox(width: 12,),
+            const SizedBox(width: 12,),
             Container(
-              color: Color.fromARGB(255, 201, 255, 203),
+              color: const Color.fromARGB(255, 201, 255, 203),
               
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,39 +59,39 @@ class _ProducttomanageState extends State<Producttomanage> {
                  
                   Text(
                     _editedProductName,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 84, 84, 84),
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(height: 3,),
+                  const SizedBox(height: 3,),
                   Text(
                     '\$$_editedProductPrice',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 113, 112, 112),
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(height: 3,),
+                  const SizedBox(height: 3,),
                   Text(
                     _editedProductDescription,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 148, 144, 144),
                       fontSize: 16,
                     ),
                     softWrap: true,
                     maxLines: 5,
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Row(
                     children: [
                       IconButton(
                           onPressed: () => _editProduct(context),
-                          icon: Icon(Icons.edit)),
+                          icon: const Icon(Icons.edit)),
 
                            IconButton(
                             onPressed: () => _deleteProduct(context),
-                             icon: Icon(Icons.delete)),
+                             icon: const Icon(Icons.delete)),
                     ],
                   ),
                  
@@ -114,7 +116,7 @@ class _ProducttomanageState extends State<Producttomanage> {
             TextEditingController(text: _editedProductDescription);
 
         return AlertDialog(
-          title: Text('Edit Product'),
+          title: const Text('Edit Product'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -125,7 +127,7 @@ class _ProducttomanageState extends State<Producttomanage> {
                   });
                 },
                 controller: nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter new product name...',
                 ),
               ),
@@ -136,7 +138,7 @@ class _ProducttomanageState extends State<Producttomanage> {
                   });
                 },
                 controller: priceController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter new product price...',
                 ),
               ),
@@ -147,7 +149,7 @@ class _ProducttomanageState extends State<Producttomanage> {
                   });
                 },
                 controller: descriptionController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter new product description...',
                 ),
               ),
@@ -167,13 +169,13 @@ class _ProducttomanageState extends State<Producttomanage> {
 
                 Navigator.pop(context);
               },
-              child: Text('Update'),
+              child: const Text('Update'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -199,8 +201,8 @@ class _ProducttomanageState extends State<Producttomanage> {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Delete Product'),
-        content: Text('Are you sure you want to delete this product?'),
+        title: const Text('Delete Product'),
+        content: const Text('Are you sure you want to delete this product?'),
         actions: [
           ElevatedButton(
             onPressed: () {
@@ -208,13 +210,13 @@ class _ProducttomanageState extends State<Producttomanage> {
               _deleteProductFromFirestore(widget.productId);
               Navigator.pop(context); // أغلق مربع الحوار
             },
-            child: Text('Delete'),
+            child: const Text('Delete'),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context); // أغلق مربع الحوار دون حذف المنتج
             },
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
         ],
       );

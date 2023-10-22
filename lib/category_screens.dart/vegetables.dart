@@ -1,6 +1,8 @@
+// ignore_for_file: avoid_print, camel_case_types
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../widgets/Allproductwidget.dart';
+import '../widgets/all_product_widget.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/product_item_widget.dart';
 
@@ -17,7 +19,7 @@ class _vegetablesScreenState extends State<vegetablesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 136, 252, 140),
+        backgroundColor: const Color.fromARGB(255, 136, 252, 140),
         title: Row(
           children: [
             Image.asset(
@@ -25,8 +27,8 @@ class _vegetablesScreenState extends State<vegetablesScreen> {
               width: 60,
               height: 60,
             ),
-            SizedBox(width: 5),
-            Text('Vegetables Products'),
+            const SizedBox(width: 5),
+            const Text('Vegetables Products'),
           ],
         ),
       ),
@@ -43,19 +45,19 @@ class _vegetablesScreenState extends State<vegetablesScreen> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No vegetable products available.'),
             );
           }
 
          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // عرض حاويتين في كل سطر
             ),
             itemCount: snapshot.data!.docs.length,
@@ -97,7 +99,7 @@ class _vegetablesScreenState extends State<vegetablesScreen> {
           );  
         },    
       ),
-    bottomNavigationBar: CustomBottomNavigationBar(),
+    bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

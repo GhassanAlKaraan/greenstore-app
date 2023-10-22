@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../constants.dart';
@@ -8,6 +10,8 @@ import 'homeclient_screen.dart';
 
 class FarmersProfilesScreen extends StatefulWidget {
    static const String screenroutes = 'farmersScreen';
+
+  const FarmersProfilesScreen({super.key});
   @override
   _FarmersProfilesScreenState createState() => _FarmersProfilesScreenState();
 }
@@ -29,8 +33,8 @@ class _FarmersProfilesScreenState extends State<FarmersProfilesScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Farmers Profiles'),
+            const SizedBox(width: 5),
+            const Text('Farmers Profiles'),
           ],
         ),
       ),
@@ -38,14 +42,14 @@ class _FarmersProfilesScreenState extends State<FarmersProfilesScreen> {
         stream: FirebaseFirestore.instance.collection('farmersprofile').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData || snapshot.data == null) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           final farmers = snapshot.data!.docs;
           return Padding(
             padding: const EdgeInsets.all(16),
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
@@ -55,7 +59,7 @@ class _FarmersProfilesScreenState extends State<FarmersProfilesScreen> {
                 final farmerData = farmers[index].data() as Map<String, dynamic>?;
 
                 if (farmerData == null) {
-                  return SizedBox();
+                  return const SizedBox();
                 }
 
                 final imageUrl = farmerData['profileImageUrl'] ?? '';
@@ -87,7 +91,7 @@ class _FarmersProfilesScreenState extends State<FarmersProfilesScreen> {
                           radius: 50,
                           backgroundImage: NetworkImage(imageUrl),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(farmName),
                       ],
                     ),
@@ -141,7 +145,7 @@ class _FarmersProfilesScreenState extends State<FarmersProfilesScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Allproductscreen(),
+                  builder: (context) => const Allproductscreen(),
                 ),
               );
             }, fontSize: 50),

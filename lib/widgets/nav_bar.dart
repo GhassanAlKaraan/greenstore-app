@@ -6,6 +6,8 @@ import '../screens/homeclient_screen.dart';
 
 
 class CustomBottomNavigationBar extends StatelessWidget {
+  const CustomBottomNavigationBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     void onBottomNavigationBarTapped(BuildContext context, int index) {
@@ -34,8 +36,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
       ],
       currentIndex: 0,
-      selectedItemColor: Color.fromARGB(255, 132, 131, 131),
-      unselectedItemColor: Color.fromARGB(255, 132, 131, 131),
+      selectedItemColor: const Color.fromARGB(255, 132, 131, 131),
+      unselectedItemColor: const Color.fromARGB(255, 132, 131, 131),
       onTap: (int index) {
         onBottomNavigationBarTapped(context, index);
       },

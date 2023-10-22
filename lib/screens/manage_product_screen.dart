@@ -1,4 +1,6 @@
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,6 +15,8 @@ import 'package:greenstore_app/widgets/manageproductwidget.dart';
 
 class ManageProductScreen extends StatefulWidget {
   static const String screenroutes = 'manage_product_screen';
+
+  const ManageProductScreen({super.key});
 
   @override
   _ManageProductScreenState createState() => _ManageProductScreenState();
@@ -29,7 +33,7 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 162, 255, 92),
+        backgroundColor: const Color.fromARGB(255, 162, 255, 92),
         title: Row(
           children: [
             Image.asset(
@@ -37,8 +41,8 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Manage your product'),
+            const SizedBox(width: 5),
+            const Text('Manage your product'),
           ],
         ),
       ),
@@ -55,12 +59,12 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
       );
     }
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     }
     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-      return Center(
+      return const Center(
         child: Text('No products available.'),
       );
     }
@@ -86,15 +90,15 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
 ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
-        selectedItemColor: Color.fromARGB(255, 132, 131, 131),
-        unselectedItemColor: Color.fromARGB(255, 132, 131, 131),
+        selectedItemColor: const Color.fromARGB(255, 132, 131, 131),
+        unselectedItemColor: const Color.fromARGB(255, 132, 131, 131),
         onTap: (int newIndex) {
           setState(() {
             index = newIndex;
             _navigateToScreen(index, context);
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -117,21 +121,21 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
       case 0:
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => HomefarmerScreen(),
+            builder: (context) => const HomefarmerScreen(),
           ),
         );
         break;
       case 1:
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) =>AddProductScreen(),
+            builder: (context) =>const AddProductScreen(),
           ),
         );
         break;
       case 2:
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => ManageProfileScreen(),
+            builder: (context) => const ManageProfileScreen(),
           ),
         );
         break;

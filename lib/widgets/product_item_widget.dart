@@ -1,6 +1,7 @@
 
 
-import 'dart:ui';
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, avoid_types_as_parameter_names, library_private_types_in_public_api
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +24,7 @@ class ProductItem extends StatefulWidget {
   final int productPrice;
   final String productId;
 
-  ProductItem({
+  const ProductItem({super.key, 
     required this.imageUrl,
     required this.productName,
     required this.productDescription,
@@ -50,8 +51,8 @@ class _ProductItemState extends State<ProductItem> {
               width: 45,
               height: 45,
             ),
-            SizedBox(width: 5),
-            Text('Product Details'),
+            const SizedBox(width: 5),
+            const Text('Product Details'),
           ],
         ),
       ),
@@ -77,9 +78,9 @@ class _ProductItemState extends State<ProductItem> {
       minChildSize: 0.6,
       builder: (context, ScrollController) {
         return Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -108,18 +109,18 @@ class _ProductItemState extends State<ProductItem> {
                   children: [
                     Text(
                       widget.productName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                   SizedBox(width: 10,),
+                   const SizedBox(width: 10,),
                    IconButton(onPressed: (){
                      Navigator.pushNamed(context, Favorites.screenroutes);
                           addTofavorite();
                    },
-                    icon:Icon(Icons.favorite_border),color: Kpinkcolor, iconSize: 32,),
-                    SizedBox(width: 100,),
+                    icon:const Icon(Icons.favorite_border),color: Kpinkcolor, iconSize: 32,),
+                    const SizedBox(width: 100,),
                     TextButton(
             onPressed: () async {
   // ابحث عن "farmId" المسجل داخل المستند في مجموعة "products"
@@ -137,7 +138,7 @@ class _ProductItemState extends State<ProductItem> {
 
   // إذا تم العثور على المستند المطابق، قم بفتح صفحة "ProfiledetailItem"
   if (query.docs.isNotEmpty) {
-    final profileData = query.docs.first.data() as Map<String, dynamic>;
+    final profileData = query.docs.first.data();
     final imageUrl = profileData['profileImageUrl'];
     final farmName = profileData['farmename'];
     final farmDescription = profileData['farmedescription'];
@@ -168,11 +169,11 @@ class _ProductItemState extends State<ProductItem> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Profile Not Found'),
-          content: Text('No matching farm profile found for the selected product.'),
+          title: const Text('Profile Not Found'),
+          content: const Text('No matching farm profile found for the selected product.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -183,14 +184,14 @@ class _ProductItemState extends State<ProductItem> {
     );
   }
 },
-child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
+child: const Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
                  
 
 
                   ],
                 ),
                 const SizedBox(height: 15,),
-                Text(
+                const Text(
                   'Description:',
                   style:
                    TextStyle(
@@ -198,27 +199,27 @@ child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
                       fontWeight: FontWeight.w500,
                        height: 2),
                 ),
-                SizedBox(height: 7,),
+                const SizedBox(height: 7,),
                 Text(
                   widget.productDescription,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText2
-                      ?.copyWith(color: Color.fromARGB(255, 135, 134, 134)),
+                      .bodyMedium
+                      ?.copyWith(color: const Color.fromARGB(255, 135, 134, 134)),
                 ),
                 
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Container(
-                  decoration:BoxDecoration(
+                  decoration:const BoxDecoration(
                      color: Kpinkcolor,
                      borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  padding: EdgeInsets.all(25),  
+                  padding: const EdgeInsets.all(25),  
                   child: Column(
                     children: [ 
                       Row(
                        children: [
-                        SizedBox(height: 7,),
+                        const SizedBox(height: 7,),
                      Text(
                        ' \$${widget.productPrice.toString()}',
                        style: Theme.of(context)
@@ -227,18 +228,18 @@ child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
                         ?.copyWith(color:Colors.white),
                         
                         ),
-                      SizedBox(width: 125,),
+                      const SizedBox(width: 125,),
                         
                 Row(  
                   children: [
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color.fromARGB(109, 140, 94, 91),
                         shape: BoxShape.circle,
                         
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.remove, color: Colors.white,),
+                        icon: const Icon(Icons.remove, color: Colors.white,),
                         onPressed: () {
                           setState(() {
                             if (number > 1) {
@@ -253,19 +254,19 @@ child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
                       child:Center(
                          child: Text(
                         number.toString(),
-                        style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       ),
                      
                     ),
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color.fromARGB(109, 140, 94, 91),
                         shape: BoxShape.circle,
                         
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.add, color: Colors.white, ),
+                        icon: const Icon(Icons.add, color: Colors.white, ),
                         onPressed: () {
                           setState(() {
                             number++;
@@ -277,9 +278,9 @@ child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
                         ),
                        ],
                       ),
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
                       Mybutton(
-                        color: Color.fromARGB(109, 140, 94, 91),
+                        color: const Color.fromARGB(109, 140, 94, 91),
                          title: 'Add to cart', 
                          onPressed: (){
                           Navigator.pushNamed(context, Chario.screenroutes);
@@ -319,70 +320,49 @@ child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
        );
 
 
-    if (productToAdd != null) {
-      // إضافة المنتج إلى سلة التسوق
-      productProvider.addToCart(productToAdd, number);
+    // إضافة المنتج إلى سلة التسوق
+    productProvider.addToCart(productToAdd, number);
 
 
-      // hon 3m nhet l product te3in kl user bl cart tb3o bl firestore krmel eza 3mel sig out w rj3 3ml login ybyno
-       // Create a reference to the user's cart document
-      final user = FirebaseAuth.instance.currentUser;
-      final cartCollection = FirebaseFirestore.instance.collection('cart');
-      final userCartDocument = cartCollection.doc(user!.uid);
+    // hon 3m nhet l product te3in kl user bl cart tb3o bl firestore krmel eza 3mel sig out w rj3 3ml login ybyno
+     // Create a reference to the user's cart document
+    final user = FirebaseAuth.instance.currentUser;
+    final cartCollection = FirebaseFirestore.instance.collection('cart');
+    final userCartDocument = cartCollection.doc(user!.uid);
 
-      // Create a reference to the "items" subcollection within the user's cart document
-      final itemsCollection = userCartDocument.collection('items');
+    // Create a reference to the "items" subcollection within the user's cart document
+    final itemsCollection = userCartDocument.collection('items');
 
-      // Create a new document for the added product
-      itemsCollection.add({
-        'name': productToAdd.name,
-        'price': productToAdd.price,
-        'quantity': number,
-        'farmuserId': productToAdd.farmuserId,
-        
-      });
-
+    // Create a new document for the added product
+    itemsCollection.add({
+      'name': productToAdd.name,
+      'price': productToAdd.price,
+      'quantity': number,
+      'farmuserId': productToAdd.farmuserId,
       
+    });
 
-      // إظهار رسالة تأكيد للمستخدم
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('added to cart'),
-            content: Text('  ${widget.productName} added to cart successfuly'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('ok', style: TextStyle(color: Kpinkcolor),),
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      // إذا لم يتم العثور على المنتج، قم بعرض رسالة خطأ
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('خطأ في العثور على المنتج'),
-            content: Text('عذرًا، لم يتم العثور على ${widget.productName}.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child:  Text('ok', style: TextStyle(color: Kpinkcolor),),
-              ),
-            ],
-          );
-        },
-      );
-    }
-    } 
+    
+
+    // إظهار رسالة تأكيد للمستخدم
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('added to cart'),
+          content: Text('  ${widget.productName} added to cart successfuly'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('ok', style: TextStyle(color: Kpinkcolor),),
+            ),
+          ],
+        );
+      },
+    );
+      } 
     }
 
 
@@ -404,48 +384,45 @@ child: Text('Show Farm', style: TextStyle(color: Kpinkcolor)),)
         ),
        );
 
+    // إضافة المنتج إلى سلة التسوق
+    productProviderfav.addTofavorite(productTofav);
+    
+    final user = FirebaseAuth.instance.currentUser;
+    final favCollection = FirebaseFirestore.instance.collection('favorite');
+    final userfavDocument = favCollection.doc(user!.uid);
 
-    if (productTofav != null) {
-      // إضافة المنتج إلى سلة التسوق
-      productProviderfav.addTofavorite(productTofav);
-      
-      final user = FirebaseAuth.instance.currentUser;
-      final favCollection = FirebaseFirestore.instance.collection('favorite');
-      final userfavDocument = favCollection.doc(user!.uid);
+    // Create a reference to the "items" subcollection within the user's cart document
+    final itemsCollection = userfavDocument.collection('itemsfav');
 
-      // Create a reference to the "items" subcollection within the user's cart document
-      final itemsCollection = userfavDocument.collection('itemsfav');
+    // Create a new document for the added product
+    itemsCollection.add({
+      'name': productTofav.name,
+      'price': productTofav.price,
+    });
 
-      // Create a new document for the added product
-      itemsCollection.add({
-        'name': productTofav.name,
-        'price': productTofav.price,
-      });
-
-      
+    
 
 
-      // إظهار رسالة تأكيد للمستخدم
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('added to favorite'),
-            content: Text('  ${widget.productName} added to favorite successfuly'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('ok', style: TextStyle(color: Kpinkcolor),),
-              ),
-            ],
-          );
-        },
-      );
-       
-     }
-    } 
+    // إظهار رسالة تأكيد للمستخدم
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('added to favorite'),
+          content: Text('  ${widget.productName} added to favorite successfuly'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('ok', style: TextStyle(color: Kpinkcolor),),
+            ),
+          ],
+        );
+      },
+    );
+     
+       } 
     }
   
   
