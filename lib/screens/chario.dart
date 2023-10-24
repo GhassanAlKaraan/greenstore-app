@@ -228,7 +228,7 @@ class _CharioState extends State<Chario> {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(
-              child: Text('No items in the cart'),
+              child: Text('No items  in the cart'),
             );
           } else {
             return FutureBuilder<List<Product>>(
@@ -240,7 +240,7 @@ class _CharioState extends State<Chario> {
                   return Text('Error: ${productSnapshot.error}');
                 } else if (productSnapshot.data == null || productSnapshot.data!.isEmpty) {
                   return const Center(
-                    child: Text('No items in the cart'),
+                    child: Text('No items  in the cart'),
                   );
                 } else {
                   final products = productSnapshot.data!;

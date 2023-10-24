@@ -22,6 +22,7 @@ Widget buildTextField(String hintText, IconData? prefixIcon, bool obscureText, F
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
+
       validator: (value) {
         if (value!.isEmpty) {
           return _errormsg(hintText);
@@ -31,13 +32,15 @@ Widget buildTextField(String hintText, IconData? prefixIcon, bool obscureText, F
       obscureText: obscureText,
       onChanged: onChanged,
       decoration: InputDecoration(
+
         prefixIcon: Icon(prefixIcon),
         hintText: hintText,
         contentPadding: const EdgeInsets.symmetric(
-          vertical: 10,
+          vertical: 18,
           horizontal: 20,
         ),
         border: const OutlineInputBorder(
+
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
@@ -48,16 +51,17 @@ Widget buildTextField(String hintText, IconData? prefixIcon, bool obscureText, F
             width: 1,
           ),
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(7),
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
+        //  Color.fromARGB(255, 255, 230, 0)
+        focusedBorder:  OutlineInputBorder(
           borderSide: BorderSide(
-            color: Color.fromARGB(255, 255, 230, 0),
+            color:Colors.pink.shade300,
             width: 3,
           ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(7),
           ),
         ),
         errorBorder: const OutlineInputBorder(

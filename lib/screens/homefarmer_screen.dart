@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:greenstore_app/screens/farmes.dart';
 import 'package:greenstore_app/screens/ordersscreen.dart';
+import 'package:greenstore_app/signloginScreens.dart/welcome_screen.dart';
 import '../widgets/my_button.dart';
 import 'manage_product_screen.dart';
 import 'manage_profile_screen.dart';
@@ -24,7 +26,6 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
       appBar: AppBar(
         title: Row(
           children: [
-            
             Image.asset(
               'assets/tractor.png',
               width: 45,
@@ -33,7 +34,15 @@ class _HomefarmerScreenState extends State<HomefarmerScreen> {
             const Text('Farmer\'s Home'),
           ],
         ),
-        backgroundColor:const Color.fromARGB(255, 248, 147, 180), 
+        backgroundColor:const Color.fromARGB(255, 248, 147, 180),
+        actions: [
+          IconButton(icon:Icon(Icons.logout),color: Colors.white, onPressed: ()
+            async {
+              await FirebaseAuth.instance.signOut();
+               Navigator.of(context).pushNamed(WelcomeScreen.screenroutes);
+
+            },),
+        ],
       ),
       
       body: Padding(

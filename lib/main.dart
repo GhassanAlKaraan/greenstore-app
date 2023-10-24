@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:greenstore_app/category_screens.dart/animals.dart';
 import 'package:greenstore_app/category_screens.dart/dairy_products.dart';
@@ -50,41 +51,59 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: FutureBuilder(
+        future: FirebaseAuth.instance
+            .authStateChanges()
+            .first,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // You can show a loading indicator here if needed.
+            return CircularProgressIndicator(color: Colors.pink,backgroundColor: Colors.pink.shade50,);
+          } else {
+            // Check if the user is logged in
+            if (snapshot.hasData) {
+              return const HomefarmerScreen(); // Show the homepage if logged in
+            } else {
+              return const WelcomeScreen(); // Show the welcome/login screen if not logged in
+            }
+          }
+        },
+      ),
       //home:FarmersProfilesScreen(),
       // home:HomefarmerScreen(),
       //home: Allproductscreen(),
       //home: Favorites(),
       // home: SignInScreen.screenRoute,
-      initialRoute: WelcomeScreen.screenroutes,
-      //home:RegistratioScreen(),
-      routes: {
-        WelcomeScreen.screenroutes: (context) => const WelcomeScreen(),
-        SignInScreen.screenRoute: (context) => const SignInScreen(),
-        RegistrationScreen.screenroutes: (context) =>
-            const RegistrationScreen(),
-        RegistrationclientScreen.screenroutes: (context) =>
-            const RegistrationclientScreen(),
-        HomeclientScreen.screenroutes: (context) => const HomeclientScreen(),
-        HomefarmerScreen.screenroutes: (context) => const HomefarmerScreen(),
-        ManageProductScreen.screenroutes: (context) =>
-            const ManageProductScreen(),
-        ManageProfileScreen.screenRoute: (context) =>
-            const ManageProfileScreen(),
-        OrdersScreen.screenroutes: (context) => const OrdersScreen(),
-        AddProductScreen.screenroutes: (context) => const AddProductScreen(),
-        AnimalsScreen.screenroutes: (context) => const AnimalsScreen(),
-        DairyScreen.screenroutes: (context) => const DairyScreen(),
-        FruitsScreen.screenroutes: (context) => const FruitsScreen(),
-        meatScreen.screenroutes: (context) => const meatScreen(),
-        seedsScreen.screenroutes: (context) => const seedsScreen(),
-        vegetablesScreen.screenroutes: (context) => const vegetablesScreen(),
-        woodScreen.screenroutes: (context) => const woodScreen(),
-        Favorites.screenroutes: (context) => const Favorites(),
-        Chario.screenroutes: (context) => const Chario(),
-        FarmersProfilesScreen.screenroutes: (context) =>
-            const FarmersProfilesScreen(),
-        FarmDetailsScreen.screenroutes: (context) => const FarmDetailsScreen(),
-      },
+
+    //home:RegistratioScreen(),
+    routes: {
+    WelcomeScreen.screenroutes: (context) => const WelcomeScreen(),
+    SignInScreen.screenRoute: (context) => const SignInScreen(),
+    RegistrationScreen.screenroutes: (context) =>
+    const RegistrationScreen(),
+    RegistrationclientScreen.screenroutes: (context) =>
+    const RegistrationclientScreen(),
+    HomeclientScreen.screenroutes: (context) => const HomeclientScreen(),
+    HomefarmerScreen.screenroutes: (context) => const HomefarmerScreen(),
+    ManageProductScreen.screenroutes: (context) =>
+    const ManageProductScreen(),
+    ManageProfileScreen.screenRoute: (context) =>
+    const ManageProfileScreen(),
+    OrdersScreen.screenroutes: (context) => const OrdersScreen(),
+    AddProductScreen.screenroutes: (context) => const AddProductScreen(),
+    AnimalsScreen.screenroutes: (context) => const AnimalsScreen(),
+    DairyScreen.screenroutes: (context) => const DairyScreen(),
+    FruitsScreen.screenroutes: (context) => const FruitsScreen(),
+    meatScreen.screenroutes: (context) => const meatScreen(),
+    seedsScreen.screenroutes: (context) => const seedsScreen(),
+    vegetablesScreen.screenroutes: (context) => const vegetablesScreen(),
+    woodScreen.screenroutes: (context) => const woodScreen(),
+    Favorites.screenroutes: (context) => const Favorites(),
+    Chario.screenroutes: (context) => const Chario(),
+    FarmersProfilesScreen.screenroutes: (context) =>
+    const FarmersProfilesScreen(),
+    FarmDetailsScreen.screenroutes: (context) => const FarmDetailsScreen(),
+    },
     );
   }
 }

@@ -50,7 +50,7 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
       body:
          StreamBuilder<QuerySnapshot>(
          stream: productsCollection
-        .where('userId', isEqualTo: user?.uid)
+        .where('farmuserId', isEqualTo: user?.uid)
         .snapshots(),
   builder: (context, snapshot) {
     if (snapshot.hasError) {
@@ -73,7 +73,7 @@ class _ManageProductScreenState extends State<ManageProductScreen> {
       itemBuilder: (context, index) {
         var productData = snapshot.data!.docs[index].data() as Map<String, dynamic>;
         String productName = productData['name'] ?? '';
-        dynamic priceData = productData['price'];
+        dynamic priceData = productData['price'] ?? '';
         int productPrice = priceData is int ? priceData : int.tryParse(priceData) ?? 0;
         String productDescription = productData['description'] ?? '';
         String imageUrl = productData['image_url'] ?? '';

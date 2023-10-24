@@ -245,14 +245,14 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     String? userId = user?.uid;
 
     final farmRef = FirebaseFirestore.instance
-        .collection('farms')
+        .collection('farmers')
         .where('userId', isEqualTo: userId);
     final farmSnapshot = await farmRef.get();
 
     if (farmSnapshot.docs.isNotEmpty) {
       farmID = farmSnapshot.docs.first.id;
     } else {
-      final newFarmRef = FirebaseFirestore.instance.collection('farms');
+      final newFarmRef = FirebaseFirestore.instance.collection('farmers');
       final newFarmDoc = await newFarmRef.add({
         'userId': userId,
       });
