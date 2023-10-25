@@ -1,3 +1,3 @@
 # greenstore_app
 
-A new Flutter project.
+Flutter e-commerce app to manage farmers and customers, products, orders, farms and more.
