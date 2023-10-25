@@ -246,7 +246,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
     final farmRef = FirebaseFirestore.instance
         .collection('farmers')
-        .where('userId', isEqualTo: userId);
+        .where('farmuserId', isEqualTo: userId);
     final farmSnapshot = await farmRef.get();
 
     if (farmSnapshot.docs.isNotEmpty) {
